@@ -2,8 +2,23 @@
     <link rel="import" href="www.waajacu.com/com/index.html">
     <script>
         var doc = document.querySelector('link[rel="import"]').import;
-        document.head.appendChild(link);
     </script>
 </head>
 <body>
+    <body>
+        <script type="text/javascript">
+        var clicks = 0;
+        function highClick() {
+            clicks += 1;
+            document.getElementById("clicks").innerHTML = clicks;
+        };
+        function lowClick() {
+            clicks -= 1;
+            document.getElementById("clicks").innerHTML = clicks;
+        };
+        </script>
+        <button type="button" onClick="highClick()">wish luck</button>
+        <button type="button" onClick="lowClick()">decline</button>
+        <p>Clicks: <a id="clicks">0</a></p>
+    </body>.
 </body>
