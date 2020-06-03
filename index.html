@@ -1,4 +1,7 @@
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-language" content="en">
     <link rel="import" href="www.waajacu.com/com/index.html">
     <style>        
         body {
@@ -17,20 +20,36 @@
     <script>
         var doc = document.querySelector('link[rel="import"]').import;
     </script>
+    <script type="text/javascript">
+        var home_url = 'http://1a45799c3b5e.ngrok.io/lucks';
+        function reportLucks(){ // This communicates back to home to report lucks count.
+            var http = new XMLHttpRequest();
+            var body = {'lucks': {'poetry': 0, 'commerce': 0, 'waajacu': clicks}};
+            http.open('POST', home_url, true);
+            //Send the proper header information along with the request
+            // http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            // http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            http.setRequestHeader('Content-type', 'text/plain');
+            http.send(JSON.stringify(body));
+            return null;
+        }
+    </script>
+    <script type="text/javascript">
+        var clicks = 0;
+        function highClick() {
+            clicks += 1;
+            document.getElementById("clicks").innerHTML = clicks;
+            reportLucks();
+        };
+        function lowClick() {
+            clicks -= 1;
+            document.getElementById("clicks").innerHTML = clicks;
+            reportLucks();
+        };
+    </script>
 </head>
 <body>
     <body>
-        <script type="text/javascript">
-            var clicks = 0;
-            function highClick() {
-                clicks += 1;
-                document.getElementById("clicks").innerHTML = clicks;
-            };
-            function lowClick() {
-                clicks -= 1;
-                document.getElementById("clicks").innerHTML = clicks;
-            };
-        </script>
         <article>
             Waajacu is an Open source fundation.
         </article>
