@@ -2,7 +2,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="content-language" content="en">
-    <link rel="import" href="www.waajacu.com/com/index.html">
     <style>        
         body {
             background-color: #000000;
@@ -17,18 +16,29 @@
             font-size: 12px;
         }
     </style>
-    <script>
-        var doc = document.querySelector('link[rel="import"]').import;
+    <script type="text/javascript">
+        function getPageContents(callback,url,params) {
+            http = new XMLHttpRequest();
+            if(params!=null) {
+                http.open('POST', url, true);
+                http.setRequestHeader('Content-type', 'application/');
+            } else {
+                http.open('GET', url, true);
+            }
+            http.send(params);
+        }
     </script>
     <script type="text/javascript">
-        var home_url = 'http://1a45799c3b5e.ngrok.io/lucks';
+        var configfile = 'http://www.waajacu.com/config/';
+        getPageContents(function(result) {
+            const homeurl = result.split('\n')[0];
+        }, configfile + 'homeurl.txt', null)
+    </script>
+    <script type="text/javascript">
         function reportLucks(){ // This communicates back to home to report lucks count.
             var http = new XMLHttpRequest();
             var body = {'lucks': {'poetry': 0, 'commerce': 0, 'waajacu': clicks}};
-            http.open('POST', home_url, true);
-            //Send the proper header information along with the request
-            // http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            // http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            http.open('POST', homeurl + 'lucks', true);
             http.setRequestHeader('Content-type', 'text/plain');
             http.send(JSON.stringify(body));
             return null;
@@ -46,7 +56,8 @@
             document.getElementById("clicks").innerHTML = clicks;
             reportLucks();
         };
-    </script>
+        window.onbeforeunload = reportLucks;
+        </script>
 </head>
 <body>
     <body>
