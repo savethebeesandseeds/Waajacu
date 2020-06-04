@@ -15,35 +15,62 @@
             font-family: 'OCR A Std', monospace;
             font-size: 12px;
         }
+        .light {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .gray {
+            background-color: #000000;
+            color: #A9A9A9;
+        }
+        .gold {
+            background-color: #000000;
+            color: #d3aa60;
+        }
     </style>
-    <script type="text/javascript">
+    <script type='text/javascript'>
         function getPageContents(callback,url,params) {
-            http = new XMLHttpRequest();
+            console.log(`getPageContents url ::: ${url}`);
+            let http = new XMLHttpRequest();
             if(params!=null) {
                 http.open('POST', url, true);
                 http.setRequestHeader('Content-type', 'application/');
             } else {
                 http.open('GET', url, true);
             }
+            http.onreadystatechange = function() {
+                callback(http.responseText);    
+            }
             http.send(params);
         }
-    </script>
-    <script type="text/javascript">
-        var configfile = 'http://www.waajacu.com/config/';
+        var homeurlfile = './scr/homeurl.txt';
+        var homeurl = []
         getPageContents(function(result) {
-            const homeurl = result.split('\n')[0];
-        }, configfile + 'homeurl.txt', null)
-    </script>
+            console.log(`fetch result ::: ${result}`);
+            homeurl = result.split('\n');
+            homeurl = homeurl.filter(function (el) {
+                return el != '';
+            });
+            homeurl = homeurl[0];
+            console.log(`fetch homeurl ::: ${homeurl}`);
+        }, homeurlfile, null);
+        function onreadyFun () {
+            console.log(`waka ready, with homeurl ::: ${homeurl}`);
+        }
+        window.onload = onreadyFun();
+    </script> <!-- var textFromFile = (window.URL || window.webkitURL || {}).createObjectURL || function(){}; -->
     <script type="text/javascript">
         function reportLucks(){ // This communicates back to home to report lucks count.
-            var http = new XMLHttpRequest();
-            var body = {'lucks': {'poetry': 0, 'commerce': 0, 'waajacu': clicks}};
-            http.open('POST', homeurl + 'lucks', true);
-            http.setRequestHeader('Content-type', 'text/plain');
-            http.send(JSON.stringify(body));
-            return null;
-        }
-    </script>
+             var http = new XMLHttpRequest();
+             var lucksurl = homeurl + 'lucks';
+             var body = {'lucks': {'poetry': 0, 'commerce': clicks, 'waajacu': 0}};
+             console.log(`homeurl ::: ${lucksurl}`);
+             http.open('POST', lucksurl, true);
+             http.setRequestHeader('Content-type', 'text/plain');
+             http.send(JSON.stringify(body));
+             return null;
+         }
+     </script>
     <script type="text/javascript">
         var clicks = 0;
         function highClick() {
