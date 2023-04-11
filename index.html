@@ -11,9 +11,21 @@
         }
         article {
             background-color: #000000;
-            color: rgb(211, 170, 96);
             font-family: 'OCR A Std', monospace;
             font-size: 12px;
+        }
+        ul {
+            list-style-type: square;
+        }
+        .info_box {
+            background-color: #000000;
+            width: 30em;
+            text-indent: 2em;
+        }
+        .note_box {
+            background-color: #777777;
+            width: 30em;
+            text-indent: 2em;
         }
         .light {
             background-color: #000000;
@@ -30,11 +42,23 @@
         }
         .gold {
             background-color: #000000;
-            color: #d3aa60;
+            color: rgb(211, 170, 96);
+        }
+        .red_gold {
+            background-color: #590505;
+            color: rgb(211, 170, 96);
+        }
+        .black_gold {
+            background-color: #000000;
+            color: rgb(211, 170, 96);
+        }
+        .black_red {
+            background-color: #000000;
+            color: rgb(118, 17, 17);
         }
         .waacamaya {
             background-color: #000000;
-            max-width: 425px;
+            max-width: 30em;
         }
     </style>
     <script type='text/javascript'>
@@ -96,23 +120,46 @@
         </script>
 </head>
 <body>
-    <body>
-        <img src="./src/waacamaya_w1.jpg" title="This ilustration was done by a machine at deepdreamgenerator.com/" class="waacamaya"></img>
-        <article>
-            Waajacu is an Open Source Fundation, symbol rendering tool. We do Artificial Intelligence and Blockchain.
-        </article>
-        <button type="button" onClick="highClick()">wish luck</button>
-        <button type="button" onClick="lowClick()">decline</button>
-        <p>lUCKS: <a id="clicks">0</a></p>
-    </body>
-    <button class = grayinv>
-        contact: contact@waajacu.com
-        <br>
-        contact for proyect develpment freelance. Development of procedures with support of 
-        max Entropy principle optimization; we do compositional function aprtoximation. we 
-        sponsor also the labour of seeds gathering. 
-        <br>
-        Consider supporting.  
-        https://www.paypal.me/savethebeesandseeds
-    </button>
+    <div style="display: flex; justify-content: flex-start;">
+        <div>
+            <img src="./src/waacamaya_w1.jpg" title="This ilustration was done by a machine at deepdreamgenerator.com/" class="waacamaya"></img>
+            <article class = "info_box red_gold">
+                <p>We build safe Software. </p>
+                <p>Design Custom Hardware. </p>
+                <p>Waajacu is an Open Source Foundation. </p>
+            </article>
+            <button type="button" onClick="highClick()">wish luck</button>
+            <button type="button" onClick="lowClick()">decline</button>
+            <p>lucks: <a id="clicks">0</a></p>        
+            <article>
+            </article>
+            <li>contact: contact@waajacu.com </li>
+            <li>support: paypal.me/savethebeesandseeds </li>
+        </div>
+        <div>
+            <article class = "info_box black_gold">
+                <p>Artificial Intelligence. </p>
+                <p>Natural Language Processing. </p>
+                <p>Applied Cryptography. </p>
+                <p>Conflict Resolution. </p>
+                <p>Modeling and Optimization. </p>
+                <p>... </p>
+                <p>ISO Certification Consultants Society. </p>
+            </article>
+            <ul class = "info_box black_gold">
+                <li>ISO 9001. </li>
+                <li>ISO 14001. </li>
+                <li>ISO/IEC 25010. </li>
+                <li>ISO/IEC 27001. </li>
+                <li>ISO/IEC 15504. </li>
+                <li>ISO 47001. </li>
+                <li>ISO 50001. </li>
+                <li>ISO 22000. </li>
+                <li>ISO 22301. </li>
+                <li>ISO 23000. </li>
+                <li>ISO 31000.</li>
+            </ul>
+        </div>
+    </div>
+      
 </body>
